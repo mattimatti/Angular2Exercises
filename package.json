@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "An Angular 2 Grunt Starter",
   "author": "Jan Kuri <jkuri88@gmail.com>",
-  "homepage": "https://github.com/angularclass/angular2-webpack-starter",
+  "homepage": "https://github.com/jkuri/angular2-grunt-starter",
   "repository": {
     "type": "git",
     "url": "https://github.com/jkuri/angular2-grunt-starter.git"
