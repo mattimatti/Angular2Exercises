@@ -38,7 +38,7 @@
     "grunt-contrib-sass": "^0.9.2",
     "grunt-contrib-uglify": "^0.11.0",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-notify": "^0.4.3",
+    "grunt-notify": "git://github.com/jkuri/grunt-notify",
     "grunt-postcss": "^0.7.1",
     "grunt-prettify": "^0.4.0",
     "grunt-ts": "^5.3.0-beta.3",

@@ -210,6 +210,11 @@ module.exports = function (grunt) {
           '<%= config.dist %>/vendor/bundle.js': '<%= config.dist %>/vendor/bundle.js'
         }
       }
+    },
+    notify_hooks: {
+      options: {
+        tslint_enabled: true
+      }
     }
   });
 
@@ -227,6 +232,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-notify');
+
+  grunt.task.run('notify_hooks');
 
   grunt.registerTask('server', [
     'clean:dist',
