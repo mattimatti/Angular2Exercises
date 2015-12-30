@@ -21,7 +21,8 @@ module.exports = function (grunt) {
         files: ['<%= config.src %>/**/*.ts'],
         tasks: [
           'tslint',
-          'ts'
+          'ts',
+          'clean:baseDirFile'
         ]
       },
       styles: {
@@ -183,6 +184,10 @@ module.exports = function (grunt) {
         expand: true,
         cwd: '<%= config.dist %>',
         src: ['**/*.*']
+      },
+      baseDirFile: {
+        expand: true,
+        src: ['**/.baseDir.ts']
       }
     },
     // Angular 2 Bundle with Deps
@@ -247,6 +252,7 @@ module.exports = function (grunt) {
     'copy:html',
     'htmlmin',
     'copy:assets',
+    'clean:baseDirFile',
     'connect:server',
     'watch'
   ]);
@@ -264,7 +270,8 @@ module.exports = function (grunt) {
     'cssmin',
     'copy:html',
     'htmlmin',
-    'copy:assets'
+    'copy:assets',
+    'clean:baseDirFile'
   ]);
 
   grunt.registerTask('default', ['server']);
