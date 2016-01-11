@@ -1,0 +1,22 @@
+<div class="login">
+    <h2>Login</h2>
+    <!-- htmlmin:ignore -->
+    <form (ngSubmit)="onSubmit()" #loginform="ngForm">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" required [(ngModel)]="model.username" ngControl="username" #username="ngForm">
+            <div [hidden]="username.valid" class="alert alert-danger">
+                Username is required
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="text" class="form-control" required [(ngModel)]="model.password" ngControl="password" #password="ngForm">
+            <div [hidden]="password.valid" class="alert alert-danger">
+                Password is required
+            </div>
+        </div>
+        <button type="submit" class="btn btn-default" [disabled]="!loginform.form.valid">Login</button>
+    </form>
+    <!-- htmlmin:ignore -->
+</div>
