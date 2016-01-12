@@ -11,7 +11,7 @@ import {User} from '../../models/User';
 
 import {LoggedInRouterOutlet} from './LoggedInRouterOutlet';
 
-
+import { _settings } from '../../settings'
 
 
 @Component({

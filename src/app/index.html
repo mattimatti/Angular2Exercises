@@ -45,7 +45,7 @@
     System.config({
         packages: {
             './': {
-                defaultExtension: 'js'
+
             }
         },
         map: {
@@ -53,8 +53,7 @@
             'rxjs': 'node_modules/rxjs'
         }
     });
-    System.import('dist/bootstrap')
-        .then(null, console.error.bind(console));
+    System.import('dist/app/bootstrap.js').then(null, console.error.bind(console));
     </script>
 </body>
 

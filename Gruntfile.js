@@ -5,7 +5,9 @@ module.exports = function(grunt) {
     require('time-grunt')(grunt);
 
     var config = {
-        src: 'src',
+        base: 'src',
+        test: 'src/test',
+        src: 'src/app',
         dist: 'dist',
         assets: 'assets',
         build_notifications: true
@@ -21,7 +23,8 @@ module.exports = function(grunt) {
                 files: ['<%= config.src %>/**/*.ts'],
                 tasks: [
                     'ts',
-                    'clean:baseDirFile'
+                    'clean:baseDirFile',
+                    'karma'
                 ]
             },
             styles: {
@@ -80,8 +83,8 @@ module.exports = function(grunt) {
             all: {
                 tsconfig: true,
                 files: [{
-                    src: ['<%= config.src %>/**/*.ts'],
-                    dest: '<%= config.dist %>'
+                    src: ['<%= config.base %>/**/*.ts'],
+                    dest: '<%= config.dist %>',
                 }]
             }
         },
@@ -176,6 +179,14 @@ module.exports = function(grunt) {
                     dest: '<%= config.dist %>/<%= config.assets %>'
                 }]
             },
+            modules: {
+                files: [{
+                    expand: true,
+                    cwd: 'node_modules',
+                    src: [],
+                    dest: '<%= config.dist %>'
+                }]
+            },
         },
         // Clean
         clean: {
@@ -224,6 +235,11 @@ module.exports = function(grunt) {
             options: {
                 dest: 'src'
             }
+        },
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js'
+            }
         }
     });
 
@@ -242,6 +258,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-notify');
     grunt.loadNpmTasks('grunt-generate');
+    grunt.loadNpmTasks('grunt-karma');
 
     grunt.task.run('notify_hooks');
 
@@ -262,6 +279,13 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('html', ['prettify']);
+
+    // testing with karma
+    grunt.registerTask('test', [
+        'ts',
+        'karma'
+    ]);
+
 
     grunt.registerTask('build', [
         'clean:dist',
