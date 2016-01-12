@@ -35,11 +35,6 @@ module.exports = function(config) {
                 serve: true,
                 watched: false,
             }, {
-                pattern: 'src/app/**/*.ts',
-                included: false,
-                serve: false,
-                watched: false,
-            }, {
                 pattern: 'node_modules/systemjs/dist/system-polyfills.js',
                 included: false,
                 watched: false
@@ -79,7 +74,7 @@ module.exports = function(config) {
 
 
         // enable / disable watching file and executing tests whenever any file changes
-        autoWatch: false,
+        autoWatch: true,
 
 
         // start these browsers
@@ -96,7 +91,7 @@ module.exports = function(config) {
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: false,
+        singleRun: true,
 
         plugins: [
             'karma-jasmine',

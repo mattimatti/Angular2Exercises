@@ -23,7 +23,6 @@ export class AuthService {
 	constructor(public http: Http) {
 		//
 		this.identity = new User({ username: '' });
-
 	}
 
 
@@ -50,8 +49,6 @@ export class AuthService {
 	isLoggedIn() {
 		return localStorage.getItem('identity');
 	}
-
-
 
 
 	authenticate(data) {
