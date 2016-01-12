@@ -42,11 +42,7 @@ System.import('angular2/src/platform/browser/browser_adapter').then(function(bro
 
 
 function onlySpecFiles(path) {
-    //console.log('onlySpecFiles', path);
     var match = /[\.|_]spec\.js$/.test(path);
-    if (match) {
-        console.log('match', path);
-    }
     return match;
 }
 

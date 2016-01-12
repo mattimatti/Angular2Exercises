@@ -4,6 +4,9 @@ module.exports = function(grunt) {
 
     require('time-grunt')(grunt);
 
+
+    var path = require('path');
+
     var config = {
         base: 'src',
         test: 'src/test',
@@ -24,7 +27,7 @@ module.exports = function(grunt) {
                 tasks: [
                     'ts',
                     'clean:baseDirFile',
-                    'karma'
+                    'test'
                 ]
             },
             styles: {
@@ -240,6 +243,16 @@ module.exports = function(grunt) {
             unit: {
                 configFile: 'karma.conf.js'
             }
+        },
+        express: {
+            api: {
+                options: {
+                    port: 8888,
+                    hostname: 'localhost',
+                    server: path.resolve(__dirname, 'server/routes.js'),
+                    serverreload: true
+                }
+            }
         }
     });
 
@@ -259,8 +272,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-notify');
     grunt.loadNpmTasks('grunt-generate');
     grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-express');
 
     grunt.task.run('notify_hooks');
+
+
+    grunt.registerTask('api', ['express', 'express-start']);
 
     grunt.registerTask('server', [
         'clean:dist',

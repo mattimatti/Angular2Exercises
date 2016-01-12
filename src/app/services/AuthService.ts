@@ -46,39 +46,48 @@ export class AuthService {
 	/**
 	 * [isLoggedIn description]
 	 */
-	isLoggedIn() {
+	isLoggedIn(): boolean {
+		return (localStorage.getItem('identity') !== null);
+	}	
+
+
+	/**
+	 * [getJwt returns the logged user]
+	 */
+	getJwt(): any {
 		return localStorage.getItem('identity');
 	}
 
 
-	authenticate(data) {
-		var username = data.credentials.username;
-		var password = data.credentials.password;
+	// authenticate(data) {
+	// 	var username = data.credentials.username;
+	// 	var password = data.credentials.password;
 
-		var creds = "username=" + username + "&password=" + password;
+	// 	var creds = "username=" + username + "&password=" + password;
 
-		var headers = new Headers();
-		headers.append('Content-Type', 'application/x-www-form-urlencoded');
+	// 	var headers = new Headers();
+	// 	headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-		this.http.post('http://localhost:3001/sessions/create', creds, {
-			headers: headers
-		})
+	// 	this.http.post('http://localhost:3001/sessions/create', creds, {
+	// 		headers: headers
+	// 	})
 
-			// map the response
-			.map(res => res.json())
+	// 		// map the response
+	// 		.map(res => res.json())
 
-			// subscribe to the http
-			.subscribe((data) => {
-				this.saveJwt(data.id_token)
-			}, (err) => {
-				this.logError(err)
-			}, () => { console.log('Authentication Complete') });
+	// 		// subscribe to the http
+	// 		.subscribe((data) => {
+	// 			this.saveJwt(data.id_token)
+	// 		}, (err) => {
+	// 			this.logError(err)
+	// 		}, () => { console.log('Authentication Complete') });
 
-	}
+	// }
 
 	saveJwt(jwt) {
 		if (jwt) {
-			localStorage.setItem('id_token', jwt)
+			jwt = JSON.stringify(jwt);
+			localStorage.setItem('identity', jwt);
 		}
 	}
 
@@ -93,26 +102,16 @@ export class AuthService {
 	 * @param  {User} user [description]
 	 * @return {any}       [description]
 	 */
-	login(user: User): any {
-
-
-		console.log('login', user);
-
-		if (user.username === 'a' && user.password === 'a') {
-
-			this.identity.authorized = true;
-
-			console.log('LOGIN SUCCESS!');
-
-			localStorage.setItem('identity', JSON.stringify(this.identity));
-
-			return Promise.resolve(this.identity);
-
-		}
-
-		console.log('LOGIN FAILS');
-
-		return Promise.reject(new Error('unauthorized'));
+	login(user: User) {
+		return new Promise<any>((resolve, reject) => {
+			if (user.username === 'a' && user.password === 'a') {
+				this.identity.authorized = true;
+				this.saveJwt(this.identity);
+				resolve(this.identity);
+			} else {
+				reject('Not authorized');
+			}
+		});
 
 	}
 

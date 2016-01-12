@@ -16,12 +16,13 @@ import {
 	Http
 } from 'angular2/http';
 
-import { AuthService } from './AuthService';	
+import { AuthService } from './AuthService';
+import { User } from '../models/User';
 
 
 export function main() {
 
-	describe('Auth service', () => {
+	describe('AuthService', () => {
 
 		let injector: Injector;
 
@@ -30,7 +31,6 @@ export function main() {
 		let backend: MockBackend;
 		
 		let response;
-
 
 
 		beforeEach(() => {
@@ -69,18 +69,85 @@ export function main() {
 			response = new Response(
 				new ResponseOptions({body: 'FOO'})
 			);
+
+			service.logout();
 			
 		});
 
-		afterEach(() => backend.verifyNoPendingRequests());
+		afterEach(() => {
+			backend.verifyNoPendingRequests();
+			service.logout();
+		});
 
-		it('simple test', inject([], () => {
-			expect(4).toEqual(4);
+
+
+		it('User is not Logged In', inject([], () => {
+			expect(service.isLoggedIn()).toBeFalsy();
 		}));
 
-		it('simple test2', inject([], () => {
-			expect(4).toEqual(4);
+
+
+		it('Logout is undefined', inject([], () => {
+			expect(service.logout()).toBeUndefined();
 		}));
+
+
+
+		it('getUser is undefined', inject([], () => {
+			expect(service.getUser()).not.toBeUndefined();
+		}));	
+
+
+
+		it('Saves Authentication info in Localstorage', inject([], () => {
+
+
+			let user:User = new User({});
+			user.username = 'a';
+			user.password = 'a';
+
+			service.saveJwt(user);
+
+			expect(service.isLoggedIn()).toBeTruthy();
+
+			expect(service.getJwt()).toEqual(localStorage.getItem('identity'));
+
+		}));
+
+
+
+		it('Successful Login return authenticated User', inject([], () => {
+
+			expect(service.isLoggedIn()).toBeFalsy();
+
+			let testUserIsAuthenticated = (userP) => {
+		      	expect(userP.authorized).toBeTruthy();
+		    };
+
+			let user:User = new User({});
+			user.username = 'a';
+			user.password = 'a';
+
+			service.login(user).then(testUserIsAuthenticated);
+
+		}));
+
+
+
+		it('Failed Login return a string', inject([], () => {
+
+			let testLoginFails = (errorString) => {
+		      	expect(errorString).toEqual('Not authorized');
+		    };
+
+			const user = service.getUser();
+				user.username = 'a';
+				user.password = 'b';
+
+			service.login(user).then(null, testLoginFails);
+		}));
+
+
 
 	});
 }
