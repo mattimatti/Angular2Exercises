@@ -1,17 +1,20 @@
 import { Component, View } from 'angular2/core';
-import { Login } from '../login/login';
-import { Home } from '../home/home';
 import {OnInit} from 'angular2/core';
-import { RouterOutlet } from 'angular2/router';
+import {ROUTER_DIRECTIVES, RouterOutlet, Location, RouteConfig, RouterLink, Router} from 'angular2/router';
 
-import {Location, RouteConfig, RouterLink, Router} from 'angular2/router';
-import {ROUTER_DIRECTIVES} from 'angular2/router';
-
-import {User} from '../../models/User';
 
 import {LoggedInRouterOutlet} from './LoggedInRouterOutlet';
 
+import {User} from '../../models/User';
 import { _settings } from '../../settings'
+
+
+// navigable componennts
+import { Login } from '../login/login';
+import { Home } from '../home/home';
+import { Containers } from '../containers/Containers';
+
+
 
 
 @Component({
@@ -27,7 +30,8 @@ import { _settings } from '../../settings'
 @RouteConfig([
 	{ path: '/', redirectTo: ['/Home'] },
 	{path: '/home',   name: 'Home',  component: Home },
-	{ path: '/login', name: 'Login', component: Login }
+	{ path: '/login', name: 'Login', component: Login },
+	{ path: '/containers', name: 'Containers', component: Containers }
 ])
 
 export class App {

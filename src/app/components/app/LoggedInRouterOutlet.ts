@@ -50,14 +50,12 @@ export class LoggedInRouterOutlet extends RouterOutlet {
 
 
 
-    if (!this.publicRoutes[url] && !this.loginService.isLoggedIn()) {
-
-      console.debug('not public.. navigate');
-
+    //if (!this.publicRoutes[url] && !this.loginService.isLoggedIn()) {
       // todo: redirect to Login, may be there a better way?
-      this.parentRouter.navigateByUrl('/login');
+      //this.parentRouter.navigateByUrl('/login');
+    //}
 
-    }
+    this.parentRouter.navigateByUrl('/containers');
 
 
 

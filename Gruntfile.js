@@ -26,8 +26,7 @@ module.exports = function(grunt) {
                 files: ['<%= config.src %>/**/*.ts'],
                 tasks: [
                     'ts',
-                    'clean:baseDirFile',
-                    'test'
+                    'clean:baseDirFile'
                 ]
             },
             styles: {
@@ -152,6 +151,7 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     removeComments: true,
+                    caseSensitive: true,
                     collapseWhitespace: false,
                     minifyJS: false
                 },
@@ -211,6 +211,7 @@ module.exports = function(grunt) {
                         'node_modules/angular2/bundles/angular2-polyfills.js',
                         'node_modules/systemjs/dist/system.src.js',
                         'node_modules/rxjs/bundles/Rx.js',
+                        'node_modules/underscore/underscore-min.js',
                         'node_modules/angular2/bundles/angular2.dev.js',
                         'node_modules/angular2/bundles/router.dev.js',
                         'node_modules/angular2/bundles/http.dev.js'
