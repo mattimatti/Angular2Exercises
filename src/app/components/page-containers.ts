@@ -4,7 +4,7 @@ import { Component } from 'angular2/core';
 import { CommentListContainer } from './comments/CommentListContainer';
 
 @Component({
-  selector: 'Containers',
+  selector: 'page-containers',
   templateUrl: './dist/components/page-containers.html',
   directives : [CommentListContainer]
 })

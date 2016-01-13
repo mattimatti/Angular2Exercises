@@ -10,11 +10,12 @@ import { settings as configData } from '../assets/settings';
 
 // navigable componennts
 import { PageLogin } from './page-login';
-import { Index as AdminIndex } from './admin-index';
+import { PageIndex } from './page-index';
 import { Containers } from './page-containers';
 import { DynamicPageComponent } from './pages/DynamicPageComponent';
 import { SubPage } from './page-subpage';
 import { JqueryIntegration } from './pages/JqueryIntegration';
+
 
 
 @Component({
@@ -29,8 +30,8 @@ import { JqueryIntegration } from './pages/JqueryIntegration';
 
 
 @RouteConfig([
-	{path: '/', redirectTo: ['/Home'] },
-	{path: '/home',   name: 'Home',  component: AdminIndex, data : configData },
+	{path: '/', redirectTo: ['/Index'] },
+	{path: '/home',   name: 'Index',  component: PageIndex, data : configData },
 	{path: '/login', name: 'Login', component: PageLogin },
 	{path: '/containers', name: 'Containers', component: Containers },
 	new AsyncRoute({path: '/dynamic', name: 'DynamicPageComponent', loader: () => Promise.resolve(DynamicPageComponent), data : configData}),
@@ -40,6 +41,8 @@ import { JqueryIntegration } from './pages/JqueryIntegration';
 
 
 export class App {
+
+
 
 
 	publicRoutes = {
@@ -53,7 +56,9 @@ export class App {
 	 * [constructor description]
 	 * @param {LoginService} private _loginService The injected service
 	 */
-	constructor( public router: Router) { }
+	constructor( public router: Router, location: Location) {
+		//location.go('/foo');
+	}
 
 
 }
