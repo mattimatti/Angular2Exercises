@@ -1,12 +1,12 @@
 <!-- htmlmin:ignore -->
 <nav [ngClass]="{hidden: ! isLoggedIn()}">
     <ul class="nav nav-tabs">
-        <li><a [routerLink]="[ '/Index']">Home</a></li>
-        <li><a [routerLink]="[ '/SubPage']">SubPage</a></li>
-        <li><a [routerLink]="[ '/Containers']">Containers</a></li>
-        <li><a [routerLink]="[ '/DynamicPageComponent']">Dynamic</a></li>
-        <li><a [routerLink]="[ '/Jquery']">Jquery</a></li>
-        <li><a href="#" (click)="logout()">Logout</a></li>
+        <li [ngClass]="{ active: isCurrentPage('') }"><a [routerLink]="[ '/Index']">Home</a></li>
+        <li [ngClass]="{ active: isCurrentPage('/pages/subpage') }"><a [routerLink]="[ '/SubPage']">SubPage</a></li>
+        <li [ngClass]="{ active: isCurrentPage('/containers') }"><a [routerLink]="[ '/Containers']">Containers</a></li>
+        <li [ngClass]="{ active: isCurrentPage('/dynamic') }"><a [routerLink]="[ '/DynamicPageComponent']">Dynamic</a></li>
+        <li [ngClass]="{ active: isCurrentPage('/jquery') }"><a [routerLink]="[ '/Jquery']">Jquery</a></li>
+        <li [ngClass]="{ active: isCurrentPage('') }"><a href="#" (click)="logout()">Logout</a></li>
     </ul>
 </nav>
 <!-- htmlmin:ignore -->

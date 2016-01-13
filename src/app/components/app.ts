@@ -17,6 +17,9 @@ import { SubPage } from './page-subpage';
 import { JqueryIntegration } from './pages/JqueryIntegration';
 
 
+// declare var System:any;
+
+
 
 @Component({
   selector: 'app'
@@ -34,15 +37,25 @@ import { JqueryIntegration } from './pages/JqueryIntegration';
 	{path: '/home',   name: 'Index',  component: PageIndex, data : configData },
 	{path: '/login', name: 'Login', component: PageLogin },
 	{path: '/containers', name: 'Containers', component: Containers },
+	//new AsyncRoute({path: '/dynamic', name: 'DynamicPageComponent', loader: () => ComponentHelper.resolve('DynamicPageComponent', './pages/DynamicPageComponent.js'), data : configData}),
 	new AsyncRoute({path: '/dynamic', name: 'DynamicPageComponent', loader: () => Promise.resolve(DynamicPageComponent), data : configData}),
 	{path: '/pages/subpage', name: 'SubPage', component: SubPage,  data : configData},
 	{path: '/jquery', name: 'Jquery', component: JqueryIntegration,  data : configData}
 ])
 
 
+
+// class ComponentHelper{
+
+//     static resolve(name,path){
+//     	let mClass = System.import(path).then(c => c[name]);
+//     	console.log('ComponentHelper:resolve', mClass);
+//         return mClass;
+//     }
+// }
+
+
 export class App {
-
-
 
 
 	publicRoutes = {
