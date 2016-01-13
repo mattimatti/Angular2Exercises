@@ -41,6 +41,7 @@
     <app></app>
     <!-- Commmon files to be cached -->
     <script src="dist/vendor/bundle.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script>
     System.config({
         packages: {
@@ -50,6 +51,7 @@
         },
         map: {
             'angular2': 'node_modules/angular2',
+            'underscore': 'node_modules/underscore/underscore-min',
             'rxjs': 'node_modules/rxjs'
         }
     });

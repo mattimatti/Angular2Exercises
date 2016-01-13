@@ -1,3 +1,8 @@
+
+// importintg the faker lib
+declare var faker: any;
+
+
 let seed = 1;
 
 function generateSeed ():number{
@@ -34,7 +39,7 @@ export class Comment {
 	static createNew() {
 		const c = new Comment();
 		c.id = generateSeed();
-		c.text = 'Comment ' + c.id;
+		c.text = faker.lorem.paragraphs(1);
 		return c;
 	}
 

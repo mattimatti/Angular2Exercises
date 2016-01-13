@@ -7,8 +7,8 @@ import {Router} from 'angular2/router';
 
 @Component({
   directives: [FORM_DIRECTIVES],
-  selector: 'login',
-  templateUrl: './dist/components/login/login.html',
+  selector: 'login-form',
+  templateUrl: './dist/components/login/login-form.html',
   providers: [AuthService]
 })
 

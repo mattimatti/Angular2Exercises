@@ -58,7 +58,17 @@ export class CommentListContainer implements OnInit {
 	    		return false;
 	    	}
 
-	    	let isValid = e.text.indexOf(this.searchedWord) > -1;
+	    	let chunks = this.searchedWord.split(' ');
+
+	    	let isValid = true;
+
+	    	_.each(chunks, (chunk) => {
+				if(e.text.indexOf(chunk) == -1){
+					isValid = false;
+				}
+	    	})
+
+	    	
 
 	    	return isValid;
 	    });

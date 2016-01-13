@@ -1,7 +1,6 @@
 @import 'reset';
 @import 'variables';
-@import '../../components/app/app';
-
+@import '../../components/app';
 body {
-  background: $light;
+    background: $light;
 }

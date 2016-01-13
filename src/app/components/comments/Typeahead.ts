@@ -3,7 +3,7 @@ import { NgModelDirective } from '../../common/NgModelDirective';
 
 @Component({
 		selector: 'Typeahead', 
-		templateUrl: './dist/components/containers/typeahead.html',
+		templateUrl: './dist/components/comments/typeahead.html',
 		directives : [NgModelDirective]
 	}
 )
@@ -28,14 +28,14 @@ export class Typeahead implements OnInit, OnDestroy {
 	@Output() change:EventEmitter<any> = new EventEmitter();
 
 
-
 	constructor(){
 	  console.log('constructor');
 	}
 
 
 	/**
-	 * handle the field change
+	 * handles the text field change and propagates the event using the change emitter
+	 * 
 	 * @param {[type]} event [description]
 	 */
 	textChanges(event) {
